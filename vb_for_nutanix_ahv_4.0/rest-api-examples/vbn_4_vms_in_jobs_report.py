@@ -202,8 +202,7 @@ if __name__ == "__main__":
 
     jobs = get_all_jobs()
     vms = get_vms_from_cluster()
-
-    # hack to force PrettyTable to insert html inside cells    
+  
     br = "<br>\n"
     section_header_tag = 'h4'
     mail_body = f"VM protection report for {html.escape(cluster_settings.name)} cluster. {br}{br}" + \
