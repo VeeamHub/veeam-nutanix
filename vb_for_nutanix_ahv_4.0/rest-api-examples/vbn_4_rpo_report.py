@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 # Simple example on how Veeam Backup for Nutanix AHV (aka VBN aka VB) 4.0 public REST API can be used
 #
 # Current script generates simple RPO report
