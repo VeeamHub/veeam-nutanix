@@ -1,10 +1,13 @@
 # VeeamHub Repository Template
 
-_Place brief description of the purpose of the repository here._
+The repository contains useful Nutanix-related scripts. First of all, scripts related to Veeam Backup for Nutanix AHV. 
 
 ## 📗 Documentation
 
-_Place documentation or links to documentation here._
+Official documentations can be found here:
+* [User Guide](https://helpcenter.veeam.com/docs/vbahv/userguide/overview.html)
+* [REST API basic information](https://helpcenter.veeam.com/docs/vbahv/rest/overview.html)
+* [REST API reference](https://helpcenter.veeam.com/docs/vbahv/rest/reference/vbahv-rest.html)
 
 ## ✍ Contributions
 
