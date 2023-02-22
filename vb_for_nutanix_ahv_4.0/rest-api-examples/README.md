@@ -49,5 +49,5 @@ To regenerate a client, go to swagger (https://your-backup-appliance-address/swa
 ![image](https://user-images.githubusercontent.com/4194526/218718371-bdabbbe6-c876-406d-a0d5-f02fa4ba4bf2.png)
 It is important to download file from this link and not to use the same spec as swagger uses. Since swagger has issues supporting advanced json objects in URL, swagger spec is a bit simplified in comparison to the one from the link above. 
 
-After that go to Swagger editor https://editor-next.swagger.io/. Here you can paste the spec and click "Generate CLient => Python". That's it.
+After that go to Swagger editor https://editor-next.swagger.io/. Here you can paste the spec and click "Generate Client => Python". That's it.
 ![image](https://user-images.githubusercontent.com/4194526/218719403-643f4adc-d9d5-43a9-84a8-49f3e434d50a.png)
