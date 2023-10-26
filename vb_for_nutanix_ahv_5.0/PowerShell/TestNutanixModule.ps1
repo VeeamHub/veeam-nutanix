@@ -66,8 +66,28 @@ $vbrSession = Get-VbrSessionByTag -sessionTag $irSession.sessionTag
 $sessionMetadata = ($vbrSession.serializedData | ConvertFrom-Json)
 $newVmId = $sessionMetadata.restoredVirtualMachineId
 $newVm = Get-NutanixVM -clusterUuid $clusterUuid -vmUuid $newVmId
+
+function WaitForIpAddress($vmUuid){
+    $MaxTimeoutSec = 10 * 60 # 10 minutes
+    $TimeWaitedSec = 0
+    $TimeoutBetweenRetriesSec = 5
+    do{
+        Start-Sleep -Seconds $TimeoutBetweenRetriesSec 
+        $TimeWaitedSec += $TimeoutBetweenRetriesSec 
+        $vm = Get-NutanixVM -clusterUuid $clusterUuid -vmUuid $newVmId
+    } While (-not $vm.ipAddress -and $TimeWaitedSec -lt $MaxTimeoutSec)
+
+    if ($vm.ipAddress){
+        return $vm.ipAddress
+    }
+    
+    throw "Failed to get VM IP address" 
+}
+
 #Will get the first one if VM has multiple IPs
-$newVmIpAddress = $newVm.ipAddress
+$newVmIpAddress = WaitForIpAddress -vmUuid $newVmId
+$newVmIpAddress
+
 
 #
 # Here can be your code for VM testing
