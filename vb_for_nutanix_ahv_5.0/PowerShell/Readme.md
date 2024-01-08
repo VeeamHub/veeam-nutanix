@@ -1,4 +1,4 @@
-Unofficial script to perform Instant Recovery for Nutanix AHV via PowerShell
+Unofficial script to perform Instant Recovery for Nutanix AHV via PowerShell. Works for VBR 12.1+ and appliance 5.0+
 
 **There are 2 files here:**
 * **VeeamNutanixUnofficialV5.psm1** -- a module which implements publish/unpublish and a few other operations
