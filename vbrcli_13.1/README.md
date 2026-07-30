@@ -73,7 +73,7 @@ plug-ins themselves.
 |------------|:---:|:-------:|:---:|:-----:|:-------:|:-------:|
 | Add server, workers, backup jobs | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | VM restore (full) | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| Disk restore | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Disk restore | ✓ | ✓ | — | — | — | — |
 | Instant recovery | ✓ | ✓ | — | — | — | — |
 | Backup copy, file-level restore, repositories | ✓ (public REST — platform-agnostic) ||||||
 
