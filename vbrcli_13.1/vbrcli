@@ -1,0 +1,13 @@
+#!/bin/sh
+# vbrcli -- POSIX launcher, counterpart of vbrcli.cmd.
+# Follows symlinks so `ln -s .../vbrcli ~/bin/vbrcli` keeps working.
+self=$0
+while [ -L "$self" ]; do
+    dir=$(cd "$(dirname "$self")" && pwd) || exit 1
+    self=$(readlink "$self")
+    case $self in
+        /*) ;;
+        *)  self=$dir/$self ;;
+    esac
+done
+exec python3 "$(cd "$(dirname "$self")" && pwd)/vbrcli.py" "$@"

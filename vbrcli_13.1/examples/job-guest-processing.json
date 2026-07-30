@@ -1,0 +1,67 @@
+{
+  "_comment": "Backup job with application-aware processing: PostgreSQL log backup + custom per-VM Linux guest credentials + Linux file indexing. Verified against VBR 13.1. Usage: take 'vbrcli job defaults', merge this file's fields onto it (or fill the other required default blocks - schedule/gfs/healthCheck/retention/advancedSettings - from defaults), then 'vbrcli job validate --spec @thisfile' and 'vbrcli job create --spec @thisfile'. Replace every <...> placeholder. All four guestProcessingSettings sub-blocks reference the SAME object {id,clusterId,type}.",
+
+  "name": "guest-processing-example",
+  "mode": "Backup",
+  "repositoryId": "<repository-id>",
+  "includes": {
+    "objects": [
+      { "id": "<vm-id>", "clusterId": "<cluster-id>", "type": "VirtualMachine" }
+    ]
+  },
+  "excludes": { "objects": [] },
+
+  "guestProcessingSettings": {
+    "enabled": true,
+
+    "applicationAwareProcessing": {
+      "enabled": true,
+      "settings": [
+        {
+          "object": { "id": "<vm-id>", "clusterId": "<cluster-id>", "type": "VirtualMachine" },
+          "isIncluded": true,
+          "applicationAwareProcessingMode": "RequireSuccess",
+          "usePersistentGuestAgent": false,
+          "vssMode": "ProcessTransactionLogs",
+          "postgreSqlSettings": {
+            "enabled": true,
+            "useGuestCredentials": false,
+            "userType": "DbUserWithPassword",
+            "backupLogsEnabled": true,
+            "backupMinutesCount": 15,
+            "retentionLogsType": "UntilBackupDeleted",
+            "keepDaysCount": 15,
+            "logsTemporaryLocation": "/tmp",
+            "shippingLogSettings": { "autoSelection": true, "shippingServerIds": [] }
+          }
+        }
+      ]
+    },
+
+    "indexingSettings": {
+      "enabled": true,
+      "settings": [
+        {
+          "object": { "id": "<vm-id>", "clusterId": "<cluster-id>", "type": "VirtualMachine" },
+          "isIncluded": true,
+          "linuxIndexingSettings":   { "enabled": true,  "type": "IndexAll",  "indexingList": [] },
+          "windowsIndexingSettings": { "enabled": false, "type": "Disabled", "indexingList": [] }
+        }
+      ]
+    },
+
+    "credentials": {
+      "credentialsId": "<default-guest-credential-id>",
+      "credentialsType": "Linux",
+      "credentials": [
+        {
+          "object": { "id": "<vm-id>", "clusterId": "<cluster-id>", "type": "VirtualMachine" },
+          "isIncluded": true,
+          "credentials": { "linuxCredentialsId": "<custom-guest-credential-id>", "windowsCredentialsId": null }
+        }
+      ]
+    },
+
+    "guestInteractionProxySettings": { "enabled": false, "autoSelectEnabled": true, "preferredProxyIds": [] }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "url": "https://vbr-host.example.local",
+  "rest_port": 9419,
+  "username": "VBRHOST\\Administrator",
+  "password": "your-password",
+  "platform": "AHV",
+  "rest_api_version": "1.3-rev0"
+}

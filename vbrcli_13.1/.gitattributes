@@ -1,0 +1,9 @@
+# One tool, three OSes: keep LF everywhere, in the repo and in checkouts.
+* text=auto eol=lf
+vbrcli      text eol=lf
+*.py        text eol=lf
+*.md        text eol=lf
+*.json      text eol=lf
+
+# The Windows cmd launcher is the only CRLF citizen.
+vbrcli.cmd  text eol=crlf
